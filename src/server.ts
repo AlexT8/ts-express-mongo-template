@@ -1,6 +1,7 @@
 import express, { Express } from "express";
 import compression from "compression";
 import bodyParser from "body-parser";
+import { connectDB } from "./db";
 import routes from './routes'
 import dotenv from 'dotenv'
 import cors from 'cors'
@@ -10,6 +11,8 @@ import { exceptionHandler } from "./exceptions/HttpException";
 dotenv.config() //Init .env constants
 
 const app:Express = express();
+connectDB()
+
 app.use(bodyParser.json()) // Parse every request with JSON
 app.use(compression()) // Compress every HTTP request
 
